@@ -28,8 +28,8 @@ const ContextProvider = (props) => {
     setShowResult(true);
     let response;
     if (prompt != undefined) {
-      response = await runChat(prompt);
       setRecentPrompt(prompt);
+      response = await runChat(prompt);
     } else {
       setPrevPrompts((prev) => [...prev, input]);
       setRecentPrompt(input);
@@ -68,7 +68,7 @@ const ContextProvider = (props) => {
     setInput,
     newChat,
   };
-  console.log("contextValue: ", contextValue);
+
   return (
     <>
       <Context.Provider value={contextValue}>{props.children}</Context.Provider>

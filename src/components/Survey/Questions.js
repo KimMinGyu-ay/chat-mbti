@@ -8,7 +8,6 @@ const Questions = (props) => {
   let select_q = 0;
 
   const nextOrBack = (isNext, index) => {
-    console.log("q1: ", q);
     if (isNext === true) {
       if (index === 0) {
         if (1 <= q && q <= 3) select_q = 0;
