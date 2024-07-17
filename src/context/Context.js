@@ -26,6 +26,7 @@ const ContextProvider = (props) => {
     setResultData("");
     setLoading(true);
     setShowResult(true);
+    setInput("");
     let response;
     if (prompt != undefined) {
       setRecentPrompt(prompt);
@@ -52,7 +53,7 @@ const ContextProvider = (props) => {
       delayPara(i, nextWord + " ");
     }
     setLoading(false);
-    setInput("");
+    
   };
 
   const contextValue = {

@@ -1,8 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
 import Survey from "../Survey/Survey";
+import Chat from "../Chat/Chat"
 import Modal from "react-modal";
 
 const Main = () => {
@@ -36,6 +37,7 @@ const Main = () => {
     onSent(text);
   }
 
+  
   return (
     <div
       className="main"
@@ -83,26 +85,10 @@ const Main = () => {
             </div>
           </>
         ) : (
-          <div className="result">
-            <div className="result-title">
-              <img src={assets.user_icon} alt="" />
-              <p>{recentPrompt}</p>
-            </div>
-            <div className="result-data">
-              <img src={assets.gemini_icon} alt="" />
-              {loading ? (
-                <div className="loader">
-                  <hr />
-                  <hr />
-                  <hr />
-                </div>
-              ) : (
-                <>
-                  <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
-                </>
-              )}
-            </div>
-          </div>
+          <Chat 
+            recentPrompt={recentPrompt} 
+            resultData={resultData}
+            loading={loading}/>
         )}
 
         <div className="main-bottom">
