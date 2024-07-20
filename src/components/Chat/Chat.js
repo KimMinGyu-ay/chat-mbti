@@ -1,5 +1,4 @@
 import { assets } from "../../assets/assets";
-import { useEffect } from "react";
 
 const Chat = (props) => {
   const { resultData, recentPrompt, loading, message } = props;
