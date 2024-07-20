@@ -19,6 +19,7 @@ const Main = () => {
     resultData,
     setInput,
     input,
+    message,
   } = useContext(Context);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -64,6 +65,7 @@ const Main = () => {
           <Chat 
             recentPrompt={recentPrompt} 
             resultData={resultData}
+            message={message}
             loading={loading}/>
         )}
 
