@@ -1,10 +1,14 @@
+import Modal from "react-modal";
 import { useContext, useState, useEffect } from "react";
+
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
-import Survey from "../Survey/Survey";
+
+import Card from "./Card"
 import Chat from "../Chat/Chat"
-import Modal from "react-modal";
+import Survey from "../Survey/Survey";
+import InputMessage from "./InputMessage";
 
 const Main = () => {
   const {
@@ -53,37 +57,9 @@ const Main = () => {
       </div>
       <div className="main-container">
         {!showResult ? (
-          <>
-            <div className="greet">
-              <p>
-                <span>반가워요 </span>
-              </p>
-              <p>궁금한 내용을 찾아보세요!</p>
-            </div>
-            <div className="cards">
-              <button
-                className="card"
-                onClick={(e) => console.log("ai mbti api로 연결")}
-              >
-                <p>나만을 위한 추천여행지 알아보기 💡</p>
-              </button>
-              <button className="card" onClick={openModal}>
-                <p>MBTI를 모른다면 저희가 찾아드릴께요✈️</p>
-              </button>
-              <button
-                className="card"
-                onClick={(e) => clickInput("이번 여름휴가 가장 HOT한 여행지는 어디야?")}
-              >
-                <p>이번 여름휴가 가장 HOT한 여행지는? 🌴</p>
-              </button>
-              <button
-                className="card"
-                onClick={(e) => clickInput("인생샷 찍기 좋은 장소는 어디야?")}
-              >
-                <p>인생샷을 찍고 싶다면 여기는 어때요? 🥰</p>
-              </button>
-            </div>
-          </>
+          <Card 
+            openModal={openModal}
+            clickInput={clickInput} />
         ) : (
           <Chat 
             recentPrompt={recentPrompt} 
@@ -92,20 +68,12 @@ const Main = () => {
         )}
 
         <div className="main-bottom">
-          <div className="search-box">
-            <input
-              onChange={(e) => setInput(e.target.value)}
-              value={input}
-              type="text"
-              placeholder="여기에 입력해 주세요!"
-              onKeyDown={handleKeyDown}
-            />
-            <div>
-              {input ? (
-                <img onClick={() => onSent()} src={assets.send_icon} alt="" />
-              ) : null}
-            </div>
-          </div>
+          <InputMessage 
+            setInput={setInput} 
+            input={input} 
+            handleKeyDown={handleKeyDown}
+            onSent={onSent}
+          />
           <p className="bottom-info">휴먼지능정보공학과 "딸깍팀"</p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { assets } from "../../assets/assets";
 
 const Chat = (props) =>{
     const {resultData, recentPrompt, loading} = props
-    
+
     return (
         <div className="result">
             <div className="result-title">
