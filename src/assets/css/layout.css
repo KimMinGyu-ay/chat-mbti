@@ -65,12 +65,11 @@
   width: 1191px;
 }
 .content {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 640px;
+  width: 832px;
   height: 550px;
   padding: 40px;
   background-color: #fff;
@@ -81,7 +80,7 @@
 .content__number {
   display: inline-block;
   margin-bottom: 10px;
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 600;
   color: #5324d6;
 }

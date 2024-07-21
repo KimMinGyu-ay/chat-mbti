@@ -5,8 +5,8 @@ import "./Main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
 
-import Card from "./Card"
-import Chat from "../Chat/Chat"
+import Card from "./Card";
+import Chat from "../Chat/Chat";
 import Survey from "../Survey/Survey";
 import InputMessage from "./InputMessage";
 
@@ -21,7 +21,7 @@ const Main = () => {
     input,
     message,
     setShowResult,
-    setMessage
+    setMessage,
   } = useContext(Context);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -42,12 +42,12 @@ const Main = () => {
   const clickInput = (text) => {
     setInput(text);
     onSent(text);
-  }
+  };
 
   const home = () => {
     setShowResult(false);
     setMessage("");
-  }
+  };
   return (
     <div
       className="main"
@@ -63,21 +63,20 @@ const Main = () => {
       </div>
       <div className="main-container">
         {!showResult ? (
-          <Card 
-            openModal={openModal}
-            clickInput={clickInput} />
+          <Card openModal={openModal} clickInput={clickInput} />
         ) : (
-          <Chat 
-            recentPrompt={recentPrompt} 
+          <Chat
+            recentPrompt={recentPrompt}
             resultData={resultData}
             message={message}
-            loading={loading}/>
+            loading={loading}
+          />
         )}
 
         <div className="main-bottom">
-          <InputMessage 
-            setInput={setInput} 
-            input={input} 
+          <InputMessage
+            setInput={setInput}
+            input={input}
             handleKeyDown={handleKeyDown}
             onSent={onSent}
           />
@@ -104,7 +103,7 @@ const Main = () => {
       >
         <div className="modal-content">
           <button className="close-button" onClick={closeModal}>
-            닫기
+            <img src={assets.close_icon} alt="Close Icon" />
           </button>
           <Survey />
         </div>

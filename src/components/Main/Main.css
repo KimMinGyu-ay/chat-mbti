@@ -94,7 +94,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  background-color: #f0f4f900;
+  background-color: #ecd9d2;
   padding: 10px 20px;
   border-radius: 50px;
 }
@@ -121,9 +121,9 @@
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: red;
+  top: 40px;
+  right: 40px;
+  background-color: white;
   border: none;
   border-radius: 4px;
   padding: 8px 12px;
@@ -153,7 +153,6 @@
 .result::-webkit-scrollbar-thumb {
   background-color: #ff8800; /* 스크롤 바의 색상 */
 }
-
 
 .result-title {
   margin: 40px 0px;

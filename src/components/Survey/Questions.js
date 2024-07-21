@@ -3,6 +3,7 @@ import data from "./constant";
 
 // 0 ~ 1은 두번째, 2~3은 첫번째
 const { questionsList } = data;
+
 const Questions = (props) => {
   const { q, setQ, count, setCount } = props;
   let select_q = 0;
@@ -41,11 +42,19 @@ const Questions = (props) => {
       </div>
     );
   }
+
+  const questionText = questionsList[q][0];
+  const isLongText = questionText.length >= 20;
+
+  const spanStyle = {
+    fontSize: isLongText ? "30px" : "40px",
+  };
+
   return (
     <div>
       <main className="content">
-        <span className="content__number">
-          Q{q}. {questionsList[q][0]}
+        <span className="content__number" style={spanStyle}>
+          Q{q}. {questionText}
         </span>
         <ul className="content__list">
           {questionsList[q].slice(1, 3).map((question, index) => (
