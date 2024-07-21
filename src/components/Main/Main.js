@@ -20,6 +20,8 @@ const Main = () => {
     setInput,
     input,
     message,
+    setShowResult,
+    setMessage
   } = useContext(Context);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -42,7 +44,10 @@ const Main = () => {
     onSent(text);
   }
 
-  
+  const home = () => {
+    setShowResult(false);
+    setMessage("");
+  }
   return (
     <div
       className="main"
@@ -54,7 +59,7 @@ const Main = () => {
     >
       <div className="nav">
         <p>휴먼과 딸깍팀!</p>
-        <img src={assets.user_icon} alt="" />
+        <img src={assets.user_icon} onClick={home} alt="User Icon" />
       </div>
       <div className="main-container">
         {!showResult ? (

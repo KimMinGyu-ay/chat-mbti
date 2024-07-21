@@ -1,5 +1,5 @@
 import { assets } from "../../assets/assets";
-
+import "../Main/Main.css"
 const Chat = (props) => {
   const { resultData, recentPrompt, loading, message } = props;
 
@@ -20,6 +20,7 @@ const Chat = (props) => {
       ))}
       {loading && (
         <div className="loader">
+          <img src={assets.gemini_icon} alt="Gemini Icon" />
           <hr />
           <hr />
           <hr />

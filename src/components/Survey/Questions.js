@@ -37,7 +37,6 @@ const Questions = (props) => {
     }, 0);
     return (
       <div className="modal">
-        <span className="loader"></span>
         <p className="modal__title">MBTI 분석중...</p>
       </div>
     );

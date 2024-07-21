@@ -74,7 +74,9 @@ const ContextProvider = (props) => {
     input,
     setInput,
     newChat,
-    message
+    message,
+    setShowResult,
+    setMessage
   };
 
   return (

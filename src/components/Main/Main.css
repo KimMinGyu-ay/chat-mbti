@@ -144,8 +144,16 @@
 }
 
 .result::-webkit-scrollbar {
-  display: none;
+  width: 8px; /* 스크롤 바의 너비 */
+  height: 8px; /* 스크롤 바의 높이 */
+  background-color: #f0f0f0; /* 스크롤 바의 배경색 */
 }
+
+/* 스크롤 바의 색상 지정 */
+.result::-webkit-scrollbar-thumb {
+  background-color: #ff8800; /* 스크롤 바의 색상 */
+}
+
 
 .result-title {
   margin: 40px 0px;
