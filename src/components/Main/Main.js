@@ -23,6 +23,7 @@ const Main = () => {
     setShowResult,
     setMessage,
   } = useContext(Context);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
