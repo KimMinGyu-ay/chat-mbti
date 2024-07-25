@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import { useContext, useState, useEffect } from "react";
 
+import axios from 'axios';
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
@@ -41,14 +42,27 @@ const Main = () => {
   };
 
   const clickInput = (text) => {
-    setInput(text);
-    onSent(text);
+    if (text.length === 0) {
+      console.log("API연결")
+      const fetchData = async() => {
+        const res = await axios.get('http://127.0.0.1:7080/')
+        return res.data
+      }
+      fetchData().then(res => console.log("API 결과: ", res))
+    }
+
+    else{
+      setInput(text);
+      onSent(text);
+  }
   };
 
   const home = () => {
     setShowResult(false);
     setMessage("");
   };
+
+
   return (
     <div
       className="main"
