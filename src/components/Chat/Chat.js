@@ -7,8 +7,7 @@ const Chat = (props) => {
     <div className="result">
       {message.map((msg, index) => (
         msg.type === 'title' ? (
-          <div className="result-title" key={index}>
-            <img src={assets.user_icon} alt="User Icon" />
+          <div className="result-title my-message" key={index}>
             <p>{msg.context}</p>
           </div>
         ) : (

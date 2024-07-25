@@ -14,7 +14,6 @@ import InputMessage from "./InputMessage";
 const Main = () => {
   const {
     onSent,
-    recentPrompt,
     showResult,
     loading,
     resultData,
@@ -26,6 +25,7 @@ const Main = () => {
   } = useContext(Context);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [chatType, setChatType] = useState('');
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -41,15 +41,20 @@ const Main = () => {
     }
   };
 
-  const clickInput = (text) => {
-    if (text.length === 0) {
-      console.log("API연결");
-      const fetchData = async () => {
-        const res = await axios.get("http://127.0.0.1:7080/");
-        return res.data;
-      };
-      fetchData().then((res) => console.log("API 결과: ", res));
+  const clickInput = (text="", chatType="") => {
+    if (chatType==='mbti') {
+      setChatType(chatType)
+      // console.log("API연결");
+      // const fetchData = async () => {
+      //   const res = await axios.get("http://127.0.0.1:7080/");
+      //   return res.data;
+      // };
+      // fetchData().then((res) => console.log("API 결과: ", res));
+      setMessage((prevMessage) => [...prevMessage, {'type':'data', 'context':'넌 누구니'}]);
+      setShowResult(true)
+      const response = {'ENTJ': 0.28, 'ENFJ': 0.22, 'INFP': 0.18}
     } else {
+      setChatType('')
       setInput(text);
       onSent(text);
     }
@@ -78,7 +83,6 @@ const Main = () => {
           <Card openModal={openModal} clickInput={clickInput} />
         ) : (
           <Chat
-            recentPrompt={recentPrompt}
             resultData={resultData}
             message={message}
             loading={loading}
