@@ -5,7 +5,6 @@ export const Context = createContext();
 
 const ContextProvider = (props) => {
   const [input, setInput] = useState("");
-  const [recentPrompt, setRecentPrompt] = useState([]);
   const [prevPrompts, setPrevPrompts] = useState([]);
 
   const [message, setMessage] = useState([]);
@@ -32,11 +31,9 @@ const ContextProvider = (props) => {
     let word = ''; 
     let response;
     if (prompt != undefined) {
-      setRecentPrompt((prevMessage) => [...prevMessage, prompt]);
       setMessage((prevMessage) => [...prevMessage, {'type':'title', 'context':prompt}]);
       response = await runChat(prompt);
     } else {
-      setRecentPrompt((prevInput) => [...prevInput, input]);
       setMessage((prevMessage) => [...prevMessage, {'type':'title', 'context':input}]);
       response = await runChat(input);
     }
@@ -66,8 +63,6 @@ const ContextProvider = (props) => {
     prevPrompts,
     setPrevPrompts,
     onSent,
-    setRecentPrompt,
-    recentPrompt,
     showResult,
     loading,
     resultData,

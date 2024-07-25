@@ -1,7 +1,7 @@
 import { assets } from "../../assets/assets";
 import "../Main/Main.css"
 const Chat = (props) => {
-  const { resultData, recentPrompt, loading, message } = props;
+  const { loading, message } = props;
 
   return (
     <div className="result">

@@ -1,7 +1,7 @@
 import Modal from "react-modal";
 import { useContext, useState, useEffect } from "react";
 
-import axios from 'axios';
+import axios from "axios";
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
@@ -43,25 +43,22 @@ const Main = () => {
 
   const clickInput = (text) => {
     if (text.length === 0) {
-      console.log("API연결")
-      const fetchData = async() => {
-        const res = await axios.get('http://127.0.0.1:7080/')
-        return res.data
-      }
-      fetchData().then(res => console.log("API 결과: ", res))
-    }
-
-    else{
+      console.log("API연결");
+      const fetchData = async () => {
+        const res = await axios.get("http://127.0.0.1:7080/");
+        return res.data;
+      };
+      fetchData().then((res) => console.log("API 결과: ", res));
+    } else {
       setInput(text);
       onSent(text);
-  }
+    }
   };
 
   const home = () => {
     setShowResult(false);
     setMessage("");
   };
-
 
   return (
     <div
@@ -74,7 +71,7 @@ const Main = () => {
     >
       <div className="nav">
         <p>휴먼과 딸깍팀!</p>
-        <img src={assets.user_icon} onClick={home} alt="User Icon" />
+        <img src={assets.return_icon} onClick={home} alt="User Icon" />
       </div>
       <div className="main-container">
         {!showResult ? (
