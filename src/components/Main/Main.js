@@ -2,7 +2,7 @@ import Modal from "react-modal";
 import { useContext, useState, useEffect } from "react";
 
 import axios from "axios";
-import "./Main.css";
+import "../../assets/css/main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
 

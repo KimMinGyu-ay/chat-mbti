@@ -1,5 +1,5 @@
 import { assets } from "../../assets/assets";
-import "../Main/Main.css"
+import "../../assets/css/main.css"
 const Chat = (props) => {
   const { loading, message } = props;
 
