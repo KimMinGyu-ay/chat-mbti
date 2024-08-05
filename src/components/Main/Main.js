@@ -26,7 +26,8 @@ const Main = () => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [chatType, setChatType] = useState('');
-
+  const [questionIdx, setQuestionIdx] = useState(0);
+  const testQuestion = ['1. 테스트 질문입니다.', '2. 테스트 질문입니다.', '3. 테스트 질문입니다.']
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -37,21 +38,27 @@ const Main = () => {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      onSent();
+      if(chatType==='mbti')clickInput(input, "mbti");
+      else onSent();
     }
   };
 
   const clickInput = (text="", chatType="") => {
     if (chatType==='mbti') {
+      if(text.length > 0){
+        setMessage((prevMessage) => [...prevMessage, {'type':'title', 'context':text}]);
+        setInput("");
+      }
       setChatType(chatType)
       // console.log("API연결");
       // const fetchData = async () => {
-      //   const res = await axios.get("http://127.0.0.1:7080/");
+      //   const res = await axios.post("http://127.0.0.1:7080/");
       //   return res.data;
       // };
       // fetchData().then((res) => console.log("API 결과: ", res));
-      setMessage((prevMessage) => [...prevMessage, {'type':'data', 'context':'넌 누구니'}]);
+      setMessage((prevMessage) => [...prevMessage, {'type':'mbti', 'context':testQuestion[questionIdx%3]}]);
       setShowResult(true)
+      setQuestionIdx(questionIdx+1)
       const response = {'ENTJ': 0.28, 'ENFJ': 0.22, 'INFP': 0.18}
     } else {
       setChatType('')
@@ -61,8 +68,11 @@ const Main = () => {
   };
 
   const home = () => {
-    setShowResult(false);
-    setMessage("");
+    if(!loading){
+      setShowResult(false);
+      setMessage("");
+      setChatType("");
+    }
   };
 
   return (
@@ -95,6 +105,7 @@ const Main = () => {
             input={input}
             handleKeyDown={handleKeyDown}
             onSent={onSent}
+            chatType={chatType}
           />
           <p className="bottom-info">휴먼지능정보공학과 "딸깍팀"</p>
         </div>
