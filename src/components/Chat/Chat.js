@@ -3,7 +3,7 @@ import "../../assets/css/chat.css"
 import ProgressBar from "./ProgressBar"
 
 const Chat = (props) => {
-  const { loading, message } = props;
+  const { loading, message, showRankResult } = props;
 
   return (
     <div className="result">
@@ -30,13 +30,13 @@ const Chat = (props) => {
               //TODO:해당 코드는 반복문으로 수정
               <>
                 <div className="result-data" key={`progress-70-${index}`}>
-                  <ProgressBar width={70} text="ENFP" />
+                  <ProgressBar width={showRankResult[0][1]} text={showRankResult[0][0]} />
                 </div>
                 <div className="result-data" key={`progress-50-${index}`}>
-                  <ProgressBar width={50} text="ENFP" />
+                  <ProgressBar width={showRankResult[1][1]} text={showRankResult[1][0]} />
                 </div>
                 <div className="result-data" key={`progress-20-${index}`}>
-                  <ProgressBar width={20} text="ENFP" />
+                  <ProgressBar width={showRankResult[2][1]} text={showRankResult[2][0]} />
                 </div>
               </>
             )}

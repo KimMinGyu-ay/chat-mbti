@@ -1,8 +1,7 @@
 import { assets } from "../../assets/assets";
 
 const InputMessage = (props) => {
-    const {setInput, input, handleKeyDown, onSent} = props;
-
+    const {setInput, input, handleKeyDown, onSent, chatType} = props;
 
     return (
         <>

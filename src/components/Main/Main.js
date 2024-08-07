@@ -27,7 +27,30 @@ const Main = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [chatType, setChatType] = useState('');
   const [questionIdx, setQuestionIdx] = useState(0);
+  const [showRankResult, setShowRankResult] = useState([]);
   const testQuestion = ['1. 테스트 질문입니다.', '2. 테스트 질문입니다.', '3. 테스트 질문입니다.']
+
+  let result = {
+    'ENTP': 0,
+    'INTP': 0,
+    'ENTJ': 0,
+    'INTJ': 0,
+    'ENFP': 0,
+    'INFP': 0,
+    'ENFJ': 0,
+    'INFJ': 0,
+    'ESTP': 0,
+    'ISTP': 0,
+    'ESTJ': 0,
+    'ISTJ': 0,
+    'ESFP': 0,
+    'ISFP': 0,
+    'ESFJ': 0,
+    'ISFJ': 0
+  } ;
+
+  let rankResult = [];
+
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -60,6 +83,15 @@ const Main = () => {
       setShowResult(true)
       setQuestionIdx(questionIdx+1)
       const response = {'ENTJ': 0.28, 'ENFJ': 0.22, 'INFP': 0.18}
+
+      for (let key in response) {
+        if (response.hasOwnProperty(key) && result.hasOwnProperty(key)) {
+            result[key] += response[key];
+          }
+        }
+      
+      let sortedresult = Object.entries(result).sort((a, b) => b[1] - a[1]);
+      setShowRankResult(sortedresult.slice(0, 3))
     } else {
       setChatType('')
       setInput(text);
@@ -96,6 +128,7 @@ const Main = () => {
             resultData={resultData}
             message={message}
             loading={loading}
+            showRankResult={showRankResult}
           />
         )}
 
