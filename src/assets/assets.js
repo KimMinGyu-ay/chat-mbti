@@ -17,6 +17,7 @@ import gemini_icon from "./gemini_icon.png";
 import return_icon from "./return_icon.png";
 import background_icon from "./background.gif";
 import background2_icon from "./background2.gif";
+import return_icon_gif from "./return_icon.gif";
 
 export const assets = {
   history_icon,
@@ -38,4 +39,5 @@ export const assets = {
   background2_icon,
   close_icon,
   return_icon,
+  return_icon_gif,
 };

@@ -25,9 +25,10 @@ const Main = () => {
   } = useContext(Context);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [chatType, setChatType] = useState('');
+  const [chatType, setChatType] = useState("");
   const [questionIdx, setQuestionIdx] = useState(0);
   const [showRankResult, setShowRankResult] = useState([]);
+<<<<<<< HEAD
   const testQuestion = ['1. 테스트 질문입니다.', '2. 테스트 질문입니다.', '3. 테스트 질문입니다.']
 
   let result = {
@@ -48,6 +49,32 @@ const Main = () => {
     'ESFJ': 0,
     'ISFJ': 0
   } ;
+=======
+  const testQuestion = [
+    "1. 테스트 질문입니다.",
+    "2. 테스트 질문입니다.",
+    "3. 테스트 질문입니다.",
+  ];
+
+  let result = {
+    ENTP: 0,
+    INTP: 0,
+    ENTJ: 0,
+    INTJ: 0,
+    ENFP: 0,
+    INFP: 0,
+    ENFJ: 0,
+    INFJ: 0,
+    ESTP: 0,
+    ISTP: 0,
+    ESTJ: 0,
+    ISTJ: 0,
+    ESFP: 0,
+    ISFP: 0,
+    ESFJ: 0,
+    ISFJ: 0,
+  };
+>>>>>>> origin/main
 
   let rankResult = [];
 
@@ -61,24 +88,28 @@ const Main = () => {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      if(chatType==='mbti')clickInput(input, "mbti");
+      if (chatType === "mbti") clickInput(input, "mbti");
       else onSent();
     }
   };
 
-  const clickInput = (text="", chatType="") => {
-    if (chatType==='mbti') {
-      if(text.length > 0){
-        setMessage((prevMessage) => [...prevMessage, {'type':'title', 'context':text}]);
+  const clickInput = (text = "", chatType = "") => {
+    if (chatType === "mbti") {
+      if (text.length > 0) {
+        setMessage((prevMessage) => [
+          ...prevMessage,
+          { type: "title", context: text },
+        ]);
         setInput("");
       }
-      setChatType(chatType)
+      setChatType(chatType);
       // console.log("API연결");
       // const fetchData = async () => {
       //   const res = await axios.post("http://127.0.0.1:7080/");
       //   return res.data;
       // };
       // fetchData().then((res) => console.log("API 결과: ", res));
+
       setMessage((prevMessage) => [...prevMessage, {'type':'mbti', 'context':testQuestion[questionIdx%3]}]);
       setShowResult(true)
       setQuestionIdx(questionIdx+1)
@@ -92,15 +123,16 @@ const Main = () => {
       
       let sortedresult = Object.entries(result).sort((a, b) => b[1] - a[1]);
       setShowRankResult(sortedresult.slice(0, 3))
+
     } else {
-      setChatType('')
+      setChatType("");
       setInput(text);
       onSent(text);
     }
   };
 
   const home = () => {
-    if(!loading){
+    if (!loading) {
       setShowResult(false);
       setMessage("");
       setChatType("");
@@ -118,7 +150,7 @@ const Main = () => {
     >
       <div className="nav">
         <p>휴먼과 딸깍팀!</p>
-        <img src={assets.return_icon} onClick={home} alt="User Icon" />
+        <img src={assets.return_icon_gif} onClick={home} alt="User Icon" />
       </div>
       <div className="main-container">
         {!showResult ? (
