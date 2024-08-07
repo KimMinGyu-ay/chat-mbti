@@ -28,28 +28,7 @@ const Main = () => {
   const [chatType, setChatType] = useState("");
   const [questionIdx, setQuestionIdx] = useState(0);
   const [showRankResult, setShowRankResult] = useState([]);
-<<<<<<< HEAD
-  const testQuestion = ['1. 테스트 질문입니다.', '2. 테스트 질문입니다.', '3. 테스트 질문입니다.']
 
-  let result = {
-    'ENTP': 0,
-    'INTP': 0,
-    'ENTJ': 0,
-    'INTJ': 0,
-    'ENFP': 0,
-    'INFP': 0,
-    'ENFJ': 0,
-    'INFJ': 0,
-    'ESTP': 0,
-    'ISTP': 0,
-    'ESTJ': 0,
-    'ISTJ': 0,
-    'ESFP': 0,
-    'ISFP': 0,
-    'ESFJ': 0,
-    'ISFJ': 0
-  } ;
-=======
   const testQuestion = [
     "1. 테스트 질문입니다.",
     "2. 테스트 질문입니다.",
@@ -74,7 +53,7 @@ const Main = () => {
     ESFJ: 0,
     ISFJ: 0,
   };
->>>>>>> origin/main
+
 
   let rankResult = [];
 
