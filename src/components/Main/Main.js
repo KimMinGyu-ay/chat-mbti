@@ -2,7 +2,7 @@ import Modal from "react-modal";
 import { useContext, useState, useEffect } from "react";
 
 import axios from "axios";
-import "./Main.css";
+import "../../assets/css/main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
 
@@ -14,7 +14,6 @@ import InputMessage from "./InputMessage";
 const Main = () => {
   const {
     onSent,
-    recentPrompt,
     showResult,
     loading,
     resultData,
@@ -26,7 +25,9 @@ const Main = () => {
   } = useContext(Context);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  const [chatType, setChatType] = useState('');
+  const [questionIdx, setQuestionIdx] = useState(0);
+  const testQuestion = ['1. 테스트 질문입니다.', '2. 테스트 질문입니다.', '3. 테스트 질문입니다.']
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -37,27 +38,41 @@ const Main = () => {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      onSent();
+      if(chatType==='mbti')clickInput(input, "mbti");
+      else onSent();
     }
   };
 
-  const clickInput = (text) => {
-    if (text.length === 0) {
-      console.log("API연결");
-      const fetchData = async () => {
-        const res = await axios.get("http://127.0.0.1:7080/");
-        return res.data;
-      };
-      fetchData().then((res) => console.log("API 결과: ", res));
+  const clickInput = (text="", chatType="") => {
+    if (chatType==='mbti') {
+      if(text.length > 0){
+        setMessage((prevMessage) => [...prevMessage, {'type':'title', 'context':text}]);
+        setInput("");
+      }
+      setChatType(chatType)
+      // console.log("API연결");
+      // const fetchData = async () => {
+      //   const res = await axios.post("http://127.0.0.1:7080/");
+      //   return res.data;
+      // };
+      // fetchData().then((res) => console.log("API 결과: ", res));
+      setMessage((prevMessage) => [...prevMessage, {'type':'mbti', 'context':testQuestion[questionIdx%3]}]);
+      setShowResult(true)
+      setQuestionIdx(questionIdx+1)
+      const response = {'ENTJ': 0.28, 'ENFJ': 0.22, 'INFP': 0.18}
     } else {
+      setChatType('')
       setInput(text);
       onSent(text);
     }
   };
 
   const home = () => {
-    setShowResult(false);
-    setMessage("");
+    if(!loading){
+      setShowResult(false);
+      setMessage("");
+      setChatType("");
+    }
   };
 
   return (
@@ -78,7 +93,6 @@ const Main = () => {
           <Card openModal={openModal} clickInput={clickInput} />
         ) : (
           <Chat
-            recentPrompt={recentPrompt}
             resultData={resultData}
             message={message}
             loading={loading}
@@ -91,6 +105,7 @@ const Main = () => {
             input={input}
             handleKeyDown={handleKeyDown}
             onSent={onSent}
+            chatType={chatType}
           />
           <p className="bottom-info">휴먼지능정보공학과 "딸깍팀"</p>
         </div>

@@ -15,7 +15,7 @@ const Card = (props) => {
       <div className="cards">
         <button
           className="card"
-          onClick={(e) => clickInput("")}
+          onClick={() => clickInput("","mbti")}
         >
           <p>나만을 위한 추천여행지 알아보기 💡</p>
         </button>
