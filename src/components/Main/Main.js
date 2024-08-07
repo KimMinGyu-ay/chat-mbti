@@ -71,7 +71,7 @@ const Main = () => {
     >
       <div className="nav">
         <p>휴먼과 딸깍팀!</p>
-        <img src={assets.return_icon} onClick={home} alt="User Icon" />
+        <img src={assets.return_icon_gif} onClick={home} alt="User Icon" />
       </div>
       <div className="main-container">
         {!showResult ? (
