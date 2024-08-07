@@ -1,19 +1,27 @@
+import { useEffect, useRef } from "react";
 import { assets } from "../../assets/assets";
-import "../../assets/css/chat.css"
-import ProgressBar from "./ProgressBar"
+import "../../assets/css/chat.css";
+import ProgressBar from "./ProgressBar";
 
 const Chat = (props) => {
   const { loading, message, showRankResult } = props;
+  const endOfMessagesRef = useRef(null);
+
+  useEffect(() => {
+    if (endOfMessagesRef.current) {
+      endOfMessagesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [message]);
 
   return (
     <div className="result">
-      {message.map((msg, index) => (
-        msg.type === 'title' ? (
+      {message.map((msg, index) =>
+        msg.type === "title" ? (
           // 내가 질문한거
           <div className="result-title my-message" key={index}>
             <p>{msg.context}</p>
           </div>
-        ) : msg.type === 'data' ?(
+        ) : msg.type === "data" ? (
           // 생성형 AI 답변
           <div className="result-data" key={index}>
             <img src={assets.gemini_icon} alt="Gemini Icon" />
@@ -30,19 +38,28 @@ const Chat = (props) => {
               //TODO:해당 코드는 반복문으로 수정
               <>
                 <div className="result-data" key={`progress-70-${index}`}>
-                  <ProgressBar width={showRankResult[0][1]} text={showRankResult[0][0]} />
+                  <ProgressBar
+                    width={showRankResult[0][1]}
+                    text={showRankResult[0][0]}
+                  />
                 </div>
                 <div className="result-data" key={`progress-50-${index}`}>
-                  <ProgressBar width={showRankResult[1][1]} text={showRankResult[1][0]} />
+                  <ProgressBar
+                    width={showRankResult[1][1]}
+                    text={showRankResult[1][0]}
+                  />
                 </div>
                 <div className="result-data" key={`progress-20-${index}`}>
-                  <ProgressBar width={showRankResult[2][1]} text={showRankResult[2][0]} />
+                  <ProgressBar
+                    width={showRankResult[2][1]}
+                    text={showRankResult[2][0]}
+                  />
                 </div>
               </>
             )}
           </>
         )
-      ))}
+      )}
       {loading && (
         <div className="loader">
           <img src={assets.gemini_icon} alt="Gemini Icon" />
@@ -51,6 +68,7 @@ const Chat = (props) => {
           <hr />
         </div>
       )}
+      <div ref={endOfMessagesRef} />
     </div>
   );
 };
