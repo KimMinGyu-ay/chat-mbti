@@ -30,33 +30,21 @@ const Chat = (props) => {
         ) : (
           // mbti 질문
           <>
+          {index >= 1 && (
+              <>
+                <div className="result-data" key={index}>
+                  <img src={assets.gemini_icon} alt="Gemini Icon" />
+                  <p dangerouslySetInnerHTML={{ __html: index-1 + "번 질문에 대한 mbti 중간 결과입니다." }}></p>
+                </div>
+                {showRankResult.map((item, index) => (<ProgressBar key={index} width={item[1]} text={item[0]} />))}
+                <br />
+                <br />
+              </>
+            )}
             <div className="result-data" key={index}>
               <img src={assets.gemini_icon} alt="Gemini Icon" />
               <p dangerouslySetInnerHTML={{ __html: msg.context }}></p>
             </div>
-            {index >= 1 && (
-              //TODO:해당 코드는 반복문으로 수정
-              <>
-                <div className="result-data" key={`progress-70-${index}`}>
-                  <ProgressBar
-                    width={showRankResult[0][1]}
-                    text={showRankResult[0][0]}
-                  />
-                </div>
-                <div className="result-data" key={`progress-50-${index}`}>
-                  <ProgressBar
-                    width={showRankResult[1][1]}
-                    text={showRankResult[1][0]}
-                  />
-                </div>
-                <div className="result-data" key={`progress-20-${index}`}>
-                  <ProgressBar
-                    width={showRankResult[2][1]}
-                    text={showRankResult[2][0]}
-                  />
-                </div>
-              </>
-            )}
           </>
         )
       )}
