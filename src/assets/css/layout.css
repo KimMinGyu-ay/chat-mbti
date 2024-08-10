@@ -76,6 +76,11 @@
   border: 10px solid #0d66c4;
   border-radius: 20px;
   text-align: center;
+
+  /* 배경 이미지 추가 */
+  background-size: cover; /* 이미지가 전체를 덮도록 조정 */
+  background-position: center; /* 이미지를 중앙에 위치 */
+  background-repeat: no-repeat; /* 이미지 반복 방지 */
 }
 .content__number {
   display: inline-block;

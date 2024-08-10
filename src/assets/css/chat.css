@@ -13,7 +13,7 @@
 
 /* 스크롤 바의 색상 지정 */
 .result::-webkit-scrollbar-thumb {
-  background-color: #ff8800; /* 스크롤 바의 색상 */
+  background-color: #8aafe8; /* 스크롤 바의 색상 */
 }
 /*
   .result-title {
@@ -77,8 +77,8 @@
 .loader hr {
   border-radius: 4px;
   border: none;
-  background-color: #f6f7f8;
-  background: linear-gradient(to right, #bfdaee, #ffffff, #9ed7ff);
+  background-color: #c5ddea;
+  background: linear-gradient(to right, #f6eacb, #ffffff, #f6eacb, #eecad5);
   background-size: 800px 50px;
   height: 20px;
   animation: loader 3s infinite linear;

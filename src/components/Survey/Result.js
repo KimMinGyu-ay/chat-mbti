@@ -1,5 +1,5 @@
 import data from "./constant";
-
+import { assets, mbtiList } from "../../assets/assets";
 const { resultContentsList } = data;
 const Result = (props) => {
   const { count } = props;
@@ -11,9 +11,13 @@ const Result = (props) => {
   if (count[3] === 2 || count[3] === 3) MBTI[0] = "E";
 
   MBTI = MBTI.join(""); // 배열을 다시 문자열로 변환
+
   return (
     <div>
-      <main className="content">
+      <main
+        className="content"
+        style={{ backgroundImage: `url(${mbtiList[MBTI]})` }}
+      >
         <h1 className="content__title color--primary">{MBTI}</h1>
         <h2 className="content__sub-title">{resultContentsList[MBTI][0]}</h2>
       </main>

@@ -30,9 +30,9 @@ const Main = () => {
   const [showRankResult, setShowRankResult] = useState([]);
 
   const testQuestion = [
-    "1. 테스트 질문입니다.",
-    "2. 테스트 질문입니다.",
-    "3. 테스트 질문입니다.",
+    "1. 여행을 갈때 주로 누구와 어디로 함께 가는 것을 선호하시나요?",
+    "2. 여행을 가면 주로 여유를 즐기는지 쇼핑이나 광관을 하는 편인지 말씀해 주세요.",
+    "3. 여행이 다 끝나고 나는 어떤 기분인가요? (구체적으로)",
   ];
 
   let result = {
