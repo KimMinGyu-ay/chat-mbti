@@ -7,6 +7,7 @@ import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
 
 import Card from "./Card";
+import Guide from "./Guide";
 import Chat from "../Chat/Chat";
 import Survey from "../Survey/Survey";
 import InputMessage from "./InputMessage";
@@ -28,6 +29,7 @@ const Main = () => {
   const [chatType, setChatType] = useState("");
   const [questionIdx, setQuestionIdx] = useState(0);
   const [showRankResult, setShowRankResult] = useState([]);
+  const [firstCardModal, setFirstCardModal] = useState(false);
 
   const testQuestion = [
     "1. 여행을 갈때 주로 누구와 어디로 함께 가는 것을 선호하시나요?",
@@ -56,12 +58,15 @@ const Main = () => {
 
   let rankResult = [];
 
-  const openModal = () => {
+  const openModal = (chatType) => {
     setModalIsOpen(true);
+    if (chatType==='mbti')setFirstCardModal(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (chatType='mbti') => {
     setModalIsOpen(false);
+    setFirstCardModal(false);
+    if(chatType==="mbti") clickInput('', chatType=chatType);
   };
 
   const handleKeyDown = (e) => {
@@ -116,6 +121,7 @@ const Main = () => {
       setShowResult(false);
       setMessage("");
       setChatType("");
+      setQuestionIdx(0);
     }
   };
 
@@ -134,7 +140,8 @@ const Main = () => {
       </div>
       <div className="main-container">
         {!showResult ? (
-          <Card openModal={openModal} clickInput={clickInput} />
+          <Card openModal={openModal} 
+                clickInput={clickInput} />
         ) : (
           <Chat
             resultData={resultData}
@@ -177,7 +184,7 @@ const Main = () => {
           <button className="close-button" onClick={closeModal}>
             <img src={assets.close_icon} alt="Close Icon" />
           </button>
-          <Survey />
+          {firstCardModal ? <Guide setShowResult={setShowResult} closeModal={closeModal}/> : <Survey />}
         </div>
       </Modal>
     </div>
