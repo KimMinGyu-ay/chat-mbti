@@ -18,6 +18,7 @@ import background2_icon from "./icon/background2.gif";
 import return_icon_gif from "./icon/return_icon.gif";
 import ENFP from "./mbti/ENFP.png";
 import INTJ from "./mbti/INTJ.png";
+import bear_icon_gif from "./icon/bear.gif";
 
 export const assets = {
   history_icon,
@@ -38,6 +39,7 @@ export const assets = {
   close_icon,
   return_icon,
   return_icon_gif,
+  bear_icon_gif,
 };
 
 export const mbtiList = {

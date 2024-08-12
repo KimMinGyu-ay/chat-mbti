@@ -64,6 +64,19 @@
   top: 898px;
   width: 1191px;
 }
+
+.content__title {
+  font-size: 44px !important; /* !important를 사용해 우선순위를 높임 */
+  color: #283742;
+  margin-bottom: 20px;
+}
+
+.content__sub-title {
+  font-size: 10px; /* 텍스트 크기를 줄임 */
+  color: #535a5f !important; /* 더 연한 글자색 */
+  margin-bottom: 20px; /* 아래쪽 여백 추가 */
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -73,11 +86,17 @@
   height: 550px;
   padding: 40px;
   background-color: #fff;
-  border: 10px solid #0d66c4;
+  border: 10px solid #b1cfe8;
   border-radius: 20px;
   text-align: center;
 
   /* 배경 이미지 추가 */
+  background-size: cover; /* 이미지가 전체를 덮도록 조정 */
+  background-position: center; /* 이미지를 중앙에 위치 */
+  background-repeat: no-repeat; /* 이미지 반복 방지 */
+
+  /* 그라데이션 배경 추가 */
+  background-image: linear-gradient(to right, #f3e7e9, #e3eeff);
   background-size: cover; /* 이미지가 전체를 덮도록 조정 */
   background-position: center; /* 이미지를 중앙에 위치 */
   background-repeat: no-repeat; /* 이미지 반복 방지 */

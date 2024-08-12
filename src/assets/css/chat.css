@@ -77,12 +77,31 @@
 .loader hr {
   border-radius: 4px;
   border: none;
-  background-color: #c5ddea;
-  background: linear-gradient(to right, #f6eacb, #ffffff, #f6eacb, #eecad5);
+  background-color: #d7e4f5; /* 배경과 어울리는 기본 색상 */
+  background: linear-gradient(to right, #f3e7e9, #ffffff, #e3eeff, #f3e7e9);
   background-size: 800px 50px;
   height: 20px;
   animation: loader 3s infinite linear;
 }
+
+/* 각 행에 다른 애니메이션 지연 시간 적용 */
+.loader hr:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loader hr:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.loader hr:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.loader hr:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+/* 필요에 따라 추가 가능 */
 
 .container {
   width: 300px;

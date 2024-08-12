@@ -94,9 +94,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  background-color: #ebf8fd;
+  background-color: #e3f0ff; /* 배경과 어울리는 부드러운 파스텔 블루 */
   padding: 10px 20px;
   border-radius: 50px;
+  box-shadow: 0 2px 5px rgba(46, 46, 46, 0.1); /* 약간의 그림자 추가로 입체감 부여 */
+  color: #333; /* 텍스트는 명확하게 보이는 어두운 색상 */
 }
 
 .search-box img {
@@ -135,6 +137,21 @@
   margin: 15px auto;
   text-align: center;
   font-weight: 300;
+}
+
+.section {
+  margin-top: 40px;
+  margin-bottom: 0px;
+  background-color: #f3e7e900; /* 섹션의 기본 배경색 */
+}
+
+.gif-background {
+  width: 280px; /* 원하는 너비로 설정 */
+  height: 240px; /* 원하는 높이로 설정 */
+  background-image: url("../icon/bear.gif"); /* GIF 파일 경로 */
+  background-size: cover; /* GIF가 전체 영역을 덮도록 조정 */
+  background-position: center; /* GIF를 중앙에 위치 */
+  background-repeat: no-repeat; /* GIF가 반복되지 않도록 설정 */
 }
 
 /* 애니메이션 */

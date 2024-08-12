@@ -60,13 +60,13 @@ const Main = () => {
 
   const openModal = (chatType) => {
     setModalIsOpen(true);
-    if (chatType==='mbti')setFirstCardModal(true);
+    if (chatType === "mbti") setFirstCardModal(true);
   };
 
-  const closeModal = (chatType='mbti') => {
+  const closeModal = (chatType = "mbti") => {
     setModalIsOpen(false);
     setFirstCardModal(false);
-    if(chatType==="mbti") clickInput('', chatType=chatType);
+    if (chatType === "mbti") clickInput("", (chatType = chatType));
   };
 
   const handleKeyDown = (e) => {
@@ -129,19 +129,18 @@ const Main = () => {
     <div
       className="main"
       style={{
-        backgroundImage: `url(${assets.background2_icon})`,
+        backgroundImage: "linear-gradient(to right, #f3e7e9, #e3eeff)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
       <div className="nav">
-        <p>휴먼과 딸깍팀!</p>
+        <p>✈️</p>
         <img src={assets.return_icon_gif} onClick={home} alt="User Icon" />
       </div>
       <div className="main-container">
         {!showResult ? (
-          <Card openModal={openModal} 
-                clickInput={clickInput} />
+          <Card openModal={openModal} clickInput={clickInput} />
         ) : (
           <Chat
             resultData={resultData}
@@ -150,7 +149,9 @@ const Main = () => {
             showRankResult={showRankResult}
           />
         )}
-
+        <div class="section">
+          <div class="gif-background"></div>
+        </div>
         <div className="main-bottom">
           <InputMessage
             setInput={setInput}
@@ -184,7 +185,11 @@ const Main = () => {
           <button className="close-button" onClick={closeModal}>
             <img src={assets.close_icon} alt="Close Icon" />
           </button>
-          {firstCardModal ? <Guide setShowResult={setShowResult} closeModal={closeModal}/> : <Survey />}
+          {firstCardModal ? (
+            <Guide setShowResult={setShowResult} closeModal={closeModal} />
+          ) : (
+            <Survey />
+          )}
         </div>
       </Modal>
     </div>
