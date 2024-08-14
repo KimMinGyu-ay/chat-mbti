@@ -2,7 +2,7 @@ import "../../assets/css/chat.css"
 import {assets} from "../../assets/assets"
 import Modal from "react-modal";
 import { useState } from "react";
-
+import {mbtiDetail} from "../../assets/mbti"
 Modal.setAppElement('#root');
 
 const ProgressBar = ({ width, text }) => {
@@ -45,7 +45,7 @@ const ProgressBar = ({ width, text }) => {
           </button>
           <main className="content">
             <h1 className="content__title">{text}</h1>
-            <h2 className="content__sub-title">해당 엠비티아이의 특징 기재</h2>
+            <h2 className="content__sub-title">{mbtiDetail[text]}</h2>
             <button
                 className="content__link btn btn--s btn--primary"
                 onClick={(e) => closeModal('mbti')}

@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import "../../assets/css/main.css";
 import { assets } from "../../assets/assets";
+import {mbtiQuestion} from "../../assets/mbti"
 import { Context } from "../../context/Context";
 
 import Card from "./Card";
@@ -31,11 +32,7 @@ const Main = () => {
   const [showRankResult, setShowRankResult] = useState([]);
   const [firstCardModal, setFirstCardModal] = useState(false);
 
-  const testQuestion = [
-    "1. 여행을 갈때 주로 누구와 어디로 함께 가는 것을 선호하시나요?",
-    "2. 여행을 가면 주로 여유를 즐기는지 쇼핑이나 광관을 하는 편인지 말씀해 주세요.",
-    "3. 여행이 다 끝나고 나는 어떤 기분인가요? (구체적으로)",
-  ];
+
 
   let result = {
     ENTP: 0,
@@ -60,13 +57,13 @@ const Main = () => {
 
   const openModal = (chatType) => {
     setModalIsOpen(true);
-    if (chatType === "mbti") setFirstCardModal(true);
+    if (chatType==='mbti')setFirstCardModal(true);
   };
 
-  const closeModal = (chatType = "mbti") => {
+  const closeModal = (chatType='mbti') => {
     setModalIsOpen(false);
     setFirstCardModal(false);
-    if (chatType === "mbti") clickInput("", (chatType = chatType));
+    if(chatType==="mbti") clickInput('', chatType=chatType);
   };
 
   const handleKeyDown = (e) => {
@@ -88,14 +85,14 @@ const Main = () => {
       setChatType(chatType);
       // console.log("API연결");
       // const fetchData = async () => {
-      //   const res = await axios.post("http://127.0.0.1:7080/");
+      //   const res = await axios.post("http://127.0.0.1:8000/predict");
       //   return res.data;
       // };
       // fetchData().then((res) => console.log("API 결과: ", res));
 
       setMessage((prevMessage) => [
         ...prevMessage,
-        { type: "mbti", context: testQuestion[questionIdx % 3] },
+        { type: "mbti", context: mbtiQuestion[questionIdx % 3] },
       ]);
       setShowResult(true);
       setQuestionIdx(questionIdx + 1);
