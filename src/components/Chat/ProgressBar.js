@@ -1,8 +1,8 @@
-import "../../assets/css/chat.css"
-import {assets} from "../../assets/assets"
+import "../../const/mbti"
+import {assets, place} from "../../assets/assets"
 import Modal from "react-modal";
 import { useState } from "react";
-import {mbtiDetail} from "../../assets/mbti"
+import {mbtiDetail} from "../../const/mbti"
 Modal.setAppElement('#root');
 
 const ProgressBar = ({ width, text }) => {
@@ -46,12 +46,16 @@ const ProgressBar = ({ width, text }) => {
           <main className="content">
             <h1 className="content__title">{text}</h1>
             <h2 className="content__sub-title">{mbtiDetail[text]}</h2>
-            <button
-                className="content__link btn btn--s btn--primary"
-                onClick={(e) => closeModal('mbti')}
-            >
-                이해했습니다.
-            </button>
+            <div className="image-container">
+              <div className="image-wrapper">
+                <img src={place[text][0]} alt={`${text} image 1`} />
+                <p>장소이름1</p>
+              </div>
+              <div className="image-wrapper">
+                <img src={place[text][1]} alt={`${text} image 2`} />
+                <p onClick={(e) => console.log("테스트")}>장소이름2</p>
+              </div>
+            </div>
           </main>
         </div>
       </Modal>

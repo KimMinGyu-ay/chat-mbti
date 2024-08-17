@@ -4,7 +4,7 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import "../../assets/css/main.css";
 import { assets } from "../../assets/assets";
-import {mbtiQuestion} from "../../assets/mbti"
+import {mbtiQuestion} from "../../const/mbti"
 import { Context } from "../../context/Context";
 
 import Card from "./Card";

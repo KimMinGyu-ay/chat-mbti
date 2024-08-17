@@ -149,7 +149,25 @@
   font-size: 22px;
   font-weight: 500;
 }
+.image-container {
+  display: flex;
+  justify-content: space-between; /* 좌우로 이미지 배치 */
+  margin-top: 20px; /* 이미지 상단에 여백 추가 */
+}
 
+.image-wrapper {
+  flex: 1; /* 각 이미지 wrapper가 동일한 크기를 가지도록 설정 */
+  text-align: center; /* 이미지 가운데 정렬 */
+  max-width: 45%; /* 최대 너비 설정 (조정 가능) */
+  margin: 0 10px; /* 이미지 사이 간격 조절 */
+}
+
+.image-wrapper img {
+  width: 100%; /* wrapper의 너비에 맞춤 */
+  height: 200px; /* 고정된 높이 설정 (조정 가능) */
+  object-fit: cover; /* 이미지가 고정된 크기에 맞게 잘리도록 설정 */
+  border-radius: 8px; /* 이미지의 모서리를 둥글게 (선택 사항) */
+}
 /* modal */
 .modal {
   z-index: 100;

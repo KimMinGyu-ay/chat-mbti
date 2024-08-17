@@ -1,48 +1,49 @@
-import history_icon from "./icon/history_icon.png";
-import menu_icon from "./icon/menu_icon.png";
-import plus_icon from "./icon/plus_icon.png";
-import question_icon from "./icon/question_icon.png";
-import setting_icon from "./icon/setting_icon.png";
-import bulb_icon from "./icon/bulb_icon.png";
-import compass_icon from "./icon/compass_icon.png";
-import gallery_icon from "./icon/gallery_icon.png";
-import mic_icon from "./icon/mic_icon.png";
-import message_icon from "./icon/message_icon.png";
-import code_icon from "./icon/code_icon.png";
-import send_icon from "./icon/send_icon.png";
-import close_icon from "./icon/close_icon.png";
-import gemini_icon from "./icon/gemini_icon.png";
-import return_icon from "./icon/return_icon.png";
-import background_icon from "./icon/background.gif";
-import background2_icon from "./icon/background2.gif";
-import return_icon_gif from "./icon/return_icon.gif";
-import ENFP from "./mbti/ENFP.png";
-import INTJ from "./mbti/INTJ.png";
-import bear_icon_gif from "./icon/bear.gif";
+// 아이콘들을 한 번에 가져오기
+const icons = require.context('./icon', false, /\.(png|jpe?g|gif|svg)$/);
+
+// MBTI 설명
+const mbtiImages = require.context('./mbti', false, /\.(png)$/);
+
+// MBTI별 여행지
+const placeImages = require.context('./place', false, /\.(png)$/);
+
 
 export const assets = {
-  history_icon,
-  menu_icon,
-  plus_icon,
-  question_icon,
-  setting_icon,
-  bulb_icon,
-  compass_icon,
-  gallery_icon,
-  mic_icon,
-  message_icon,
-  code_icon,
-  send_icon,
-  gemini_icon,
-  background_icon,
-  background2_icon,
-  close_icon,
-  return_icon,
-  return_icon_gif,
-  bear_icon_gif,
+  history_icon: icons('./history_icon.png'),
+  menu_icon: icons('./menu_icon.png'),
+  plus_icon: icons('./plus_icon.png'),
+  question_icon: icons('./question_icon.png'),
+  setting_icon: icons('./setting_icon.png'),
+  bulb_icon: icons('./bulb_icon.png'),
+  compass_icon: icons('./compass_icon.png'),
+  gallery_icon: icons('./gallery_icon.png'),
+  mic_icon: icons('./mic_icon.png'),
+  message_icon: icons('./message_icon.png'),
+  code_icon: icons('./code_icon.png'),
+  send_icon: icons('./send_icon.png'),
+  close_icon: icons('./close_icon.png'),
+  gemini_icon: icons('./gemini_icon.png'),
+  return_icon: icons('./return_icon.png'),
+  background_icon: icons('./background.gif'),
+  background2_icon: icons('./background2.gif'),
+  return_icon_gif: icons('./return_icon.gif'),
+  bear_icon_gif: icons('./bear.gif'),
 };
 
+
 export const mbtiList = {
-  ENFP: ENFP,
-  INTJ: INTJ,
+  ENFP: mbtiImages('./ENFP.png'),
+  INTJ: mbtiImages('./INTJ.png'),
+};
+
+
+
+
+
+export const place = {
+  ENFJ: [placeImages('./ENFJ1.png'), placeImages('./ENFJ2.png')],
+  ENFP: [placeImages('./ENFP1.png'), placeImages('./ENFP2.png')],
+  ENTJ: [placeImages('./ENTJ1.png'), placeImages('./ENTJ2.png')],
+  INTJ: [placeImages('./INTJ1.png'), placeImages('./INTJ2.png')],
+  INFP: [placeImages('./INFP1.png'), placeImages('./INFP2.png')],
 };
