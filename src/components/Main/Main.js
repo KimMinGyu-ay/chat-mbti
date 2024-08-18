@@ -18,6 +18,7 @@ const Main = () => {
     onSent,
     showResult,
     loading,
+    setLoading,
     resultData,
     setInput,
     input,
@@ -31,27 +32,7 @@ const Main = () => {
   const [questionIdx, setQuestionIdx] = useState(0);
   const [showRankResult, setShowRankResult] = useState([]);
   const [firstCardModal, setFirstCardModal] = useState(false);
-
-  let result = {
-    ENTP: 0,
-    INTP: 0,
-    ENTJ: 0,
-    INTJ: 0,
-    ENFP: 0,
-    INFP: 0,
-    ENFJ: 0,
-    INFJ: 0,
-    ESTP: 0,
-    ISTP: 0,
-    ESTJ: 0,
-    ISTJ: 0,
-    ESFP: 0,
-    ISFP: 0,
-    ESFJ: 0,
-    ISFJ: 0,
-  };
-
-  let rankResult = [];
+  let response;
 
   const openModal = (chatType) => {
     setModalIsOpen(true);
@@ -71,39 +52,43 @@ const Main = () => {
     }
   };
 
-  const clickInput = (text = "", chatType = "") => {
+  const clickInput = async (text = "", chatType = "") => {
     if (chatType === "mbti") {
-      if (text.length > 0) {
+      if (text.length > 0 && questionIdx <= 3) {
         setMessage((prevMessage) => [
           ...prevMessage,
           { type: "title", context: text },
         ]);
         setInput("");
+        setLoading(true);
+        async function postData() {
+          try {
+            //응답 성공 
+            const response = await axios.post('http://127.0.0.1:8000/predict',{
+                //보내고자 하는 데이터 
+                text: text,
+                count: 0
+            });
+            return response.data.result;
+          } catch (error) {
+            //응답 실패
+            console.error(error);
+            return null
+          }
+        }
+        response = await postData();
       }
-      setChatType(chatType);
-      // console.log("API연결");
-      // const fetchData = async () => {
-      //   const res = await axios.post("http://127.0.0.1:8000/predict");
-      //   return res.data;
-      // };
-      // fetchData().then((res) => console.log("API 결과: ", res));
-
-      setMessage((prevMessage) => [
-        ...prevMessage,
-        { type: "mbti", context: mbtiQuestion[questionIdx % 3] },
-      ]);
+      setChatType(chatType);      
+      setLoading(false);
+      if(questionIdx <= 3){
+        setMessage((prevMessage) => [
+          ...prevMessage,
+          { type: "mbti", context: mbtiQuestion[questionIdx] },
+        ]);
+    }
       setShowResult(true);
       setQuestionIdx(questionIdx + 1);
-      const response = { ENTJ: 0.28, ENFJ: 0.22, INFP: 0.18 };
-
-      for (let key in response) {
-        if (response.hasOwnProperty(key) && result.hasOwnProperty(key)) {
-          result[key] += response[key];
-        }
-      }
-
-      let sortedresult = Object.entries(result).sort((a, b) => b[1] - a[1]);
-      setShowRankResult(sortedresult.slice(0, 3));
+      setShowRankResult(response?.slice(0, 3));
     } else {
       setChatType("");
       setInput(text);
@@ -152,6 +137,7 @@ const Main = () => {
             handleKeyDown={handleKeyDown}
             onSent={onSent}
             chatType={chatType}
+            questionIdx={questionIdx}
           />
           <p className="bottom-info">휴먼지능정보공학과 "딸깍팀"</p>
         </div>

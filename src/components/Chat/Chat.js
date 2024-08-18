@@ -34,7 +34,8 @@ const Chat = (props) => {
               <>
                 <div className="result-data" key={index}>
                   <img src={assets.gemini_icon} alt="Gemini Icon" />
-                  <p dangerouslySetInnerHTML={{ __html: index-1 + "번 질문에 대한 mbti 중간 결과입니다." }}></p>
+                  {index >= 3 ? (<p dangerouslySetInnerHTML={{ __html: "최종결과 값은 아래와 같습니다." }}></p>) : (
+                  <p dangerouslySetInnerHTML={{ __html: "이전 질문에 대한 mbti 중간 결과입니다." }}></p>)}
                 </div>
                 {showRankResult.map((item, index) => (<ProgressBar key={index} width={item[1]} text={item[0]} />))}
                 <br />

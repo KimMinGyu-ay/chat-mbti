@@ -65,6 +65,7 @@ const ContextProvider = (props) => {
     onSent,
     showResult,
     loading,
+    setLoading,
     resultData,
     input,
     setInput,
