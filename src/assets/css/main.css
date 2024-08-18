@@ -145,14 +145,6 @@
   background-color: #f3e7e900; /* 섹션의 기본 배경색 */
 }
 
-.gif-background {
-  width: 280px; /* 원하는 너비로 설정 */
-  height: 240px; /* 원하는 높이로 설정 */
-  background-image: url("../icon/bear.gif"); /* GIF 파일 경로 */
-  background-size: cover; /* GIF가 전체 영역을 덮도록 조정 */
-  background-position: center; /* GIF를 중앙에 위치 */
-  background-repeat: no-repeat; /* GIF가 반복되지 않도록 설정 */
-}
 
 /* 애니메이션 */
 @keyframes spin {

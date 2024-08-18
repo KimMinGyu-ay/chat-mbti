@@ -4,7 +4,7 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import "../../assets/css/main.css";
 import { assets } from "../../assets/assets";
-import {mbtiQuestion} from "../../const/mbti"
+import { mbtiQuestion } from "../../const/mbti";
 import { Context } from "../../context/Context";
 
 import Card from "./Card";
@@ -32,8 +32,6 @@ const Main = () => {
   const [showRankResult, setShowRankResult] = useState([]);
   const [firstCardModal, setFirstCardModal] = useState(false);
 
-
-
   let result = {
     ENTP: 0,
     INTP: 0,
@@ -57,13 +55,13 @@ const Main = () => {
 
   const openModal = (chatType) => {
     setModalIsOpen(true);
-    if (chatType==='mbti')setFirstCardModal(true);
+    if (chatType === "mbti") setFirstCardModal(true);
   };
 
-  const closeModal = (chatType='mbti') => {
+  const closeModal = (chatType = "mbti") => {
     setModalIsOpen(false);
     setFirstCardModal(false);
-    if(chatType==="mbti") clickInput('', chatType=chatType);
+    if (chatType === "mbti") clickInput("", (chatType = chatType));
   };
 
   const handleKeyDown = (e) => {
@@ -146,9 +144,7 @@ const Main = () => {
             showRankResult={showRankResult}
           />
         )}
-        <div class="section">
-          <div class="gif-background"></div>
-        </div>
+
         <div className="main-bottom">
           <InputMessage
             setInput={setInput}

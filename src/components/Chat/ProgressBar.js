@@ -1,28 +1,30 @@
-import "../../const/mbti"
-import {assets, place} from "../../assets/assets"
+import "../../const/mbti";
+import { assets, place } from "../../assets/assets";
 import Modal from "react-modal";
 import { useState } from "react";
-import {mbtiDetail} from "../../const/mbti"
-Modal.setAppElement('#root');
+import { mbtiDetail } from "../../const/mbti";
+Modal.setAppElement("#root");
 
 const ProgressBar = ({ width, text }) => {
-    let w = Math.floor(width * 100); // 소수점 이하 버림
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const showDetailMBTI = () =>{
-      setModalIsOpen(true);
-    }
+  let w = Math.floor(width * 100); // 소수점 이하 버림
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const closeModal = () =>{
-      setModalIsOpen(false);
-    }
-    return (
-      <>
-        <div className="progress-bar" onClick={() => showDetailMBTI(text)}>
-          <div className="progress-bar-fill" style={{ width: `${w}%` }}></div>
-          <span className="progress-bar-text">{text}</span>
-          <span className="progress-bar-percentage">{w}%</span>
-        </div>
-        <Modal
+  const showDetailMBTI = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  return (
+    <>
+      <div className="progress-bar" onClick={() => showDetailMBTI(text)}>
+        <div className="progress-bar-fill" style={{ width: `${w}%` }}></div>
+        <span className="progress-bar-text">{text}</span>
+        <span className="progress-bar-percentage">{w}%</span>
+      </div>
+      <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Survey Modal"
@@ -45,23 +47,21 @@ const ProgressBar = ({ width, text }) => {
           </button>
           <main className="content">
             <h1 className="content__title">{text}</h1>
-            <h2 className="content__sub-title">{mbtiDetail[text]}</h2>
+            <h3>-{mbtiDetail[text][0]}-</h3>
+            <h2 className="content__sub-title">{mbtiDetail[text][1]}</h2>
             <div className="image-container">
               <div className="image-wrapper">
                 <img src={place[text][0]} alt={`${text} image 1`} />
-                <p>장소이름1</p>
               </div>
               <div className="image-wrapper">
                 <img src={place[text][1]} alt={`${text} image 2`} />
-                <p onClick={(e) => console.log("테스트")}>장소이름2</p>
               </div>
             </div>
           </main>
         </div>
       </Modal>
-     </>
-    );
-  };
-
+    </>
+  );
+};
 
 export default ProgressBar;

@@ -15,7 +15,7 @@ const Guide = (props) => {
         className="content__link btn btn--s btn--primary"
         onClick={(e) => closeModal("mbti")}
       >
-        이해했습니다.
+        시작하기
       </button>
     </main>
   );
