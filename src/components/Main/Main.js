@@ -32,6 +32,7 @@ const Main = () => {
   const [questionIdx, setQuestionIdx] = useState(0);
   const [showRankResult, setShowRankResult] = useState([]);
   const [firstCardModal, setFirstCardModal] = useState(false);
+  
   let response;
 
   const openModal = (chatType) => {
@@ -61,13 +62,14 @@ const Main = () => {
         ]);
         setInput("");
         setLoading(true);
+        
         async function postData() {
           try {
             //응답 성공 
-            const response = await axios.post('http://127.0.0.1:8000/predict',{
+            response = await axios.post('http://127.0.0.1:8000/predict',{
                 //보내고자 하는 데이터 
                 text: text,
-                count: 0
+                count: questionIdx
             });
             return response.data.result;
           } catch (error) {
@@ -77,9 +79,11 @@ const Main = () => {
           }
         }
         response = await postData();
+        
       }
       setChatType(chatType);      
       setLoading(false);
+      
       if(questionIdx <= 3){
         setMessage((prevMessage) => [
           ...prevMessage,
@@ -138,6 +142,7 @@ const Main = () => {
             onSent={onSent}
             chatType={chatType}
             questionIdx={questionIdx}
+            loading={loading}
           />
           <p className="bottom-info">휴먼지능정보공학과 "딸깍팀"</p>
         </div>

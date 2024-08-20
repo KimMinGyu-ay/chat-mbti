@@ -1,7 +1,7 @@
 import { assets } from "../../assets/assets";
 
 const InputMessage = (props) => {
-    const {setInput, input, handleKeyDown, onSent, questionIdx} = props;
+    const {setInput, input, handleKeyDown, onSent, questionIdx, loading} = props;
 
     return (
         <>
@@ -12,7 +12,7 @@ const InputMessage = (props) => {
                 type="text"
                 placeholder={questionIdx === 4 ? "모든 테스트를 종료했습니다." : "여기에 입력해 주세요!"}
                 onKeyDown={handleKeyDown}
-                disabled={questionIdx === 4}
+                disabled={questionIdx === 4 || loading}
                 />
                 <div>
                 {input ? (
