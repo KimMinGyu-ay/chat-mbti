@@ -51,12 +51,14 @@ const Main = () => {
   let response;
   const openModal = (chatType) => {
     setModalIsOpen(true);
+    setInput('');
     if (chatType === "mbti") setFirstCardModal(true);
   };
 
   const closeModal = (chatType = "mbti") => {
     setModalIsOpen(false);
     setFirstCardModal(false);
+    setInput('');
     if (chatType === "mbti") clickInput("", (chatType = chatType));
   };
 
@@ -123,6 +125,7 @@ const Main = () => {
       setMessage("");
       setChatType("");
       setQuestionIdx(0);
+      setInput('');
     }
   };
 
