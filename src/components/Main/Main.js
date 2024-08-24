@@ -32,9 +32,23 @@ const Main = () => {
   const [questionIdx, setQuestionIdx] = useState(0);
   const [showRankResult, setShowRankResult] = useState([]);
   const [firstCardModal, setFirstCardModal] = useState(false);
-  
+  const [mbtiProbs, setMbtiProbs] = useState({'INTP': 0,
+                                              'ISTP': 0,
+                                              'ENTP': 0,
+                                              'ESTP': 0,
+                                              'INFP': 0,
+                                              'ISFP': 0,
+                                              'ENFP': 0,
+                                              'ESFP': 0, 
+                                              'INTJ': 0,
+                                              'ISTJ': 0,
+                                              'ENTJ': 0,
+                                              'ESTJ': 0,
+                                              'INFJ': 0,
+                                              'ISFJ': 0,
+                                              'ENFJ': 0,
+                                              'ESFJ': 0})
   let response;
-
   const openModal = (chatType) => {
     setModalIsOpen(true);
     if (chatType === "mbti") setFirstCardModal(true);
@@ -69,8 +83,10 @@ const Main = () => {
             response = await axios.post('http://127.0.0.1:8000/predict',{
                 //보내고자 하는 데이터 
                 text: text,
-                count: questionIdx
+                count: questionIdx,
+                mbti_probs: mbtiProbs
             });
+            setMbtiProbs(Object.fromEntries(response.data.result));
             return response.data.result;
           } catch (error) {
             //응답 실패
@@ -92,7 +108,8 @@ const Main = () => {
     }
       setShowResult(true);
       setQuestionIdx(questionIdx + 1);
-      setShowRankResult(response?.slice(0, 3));
+      setShowRankResult(response);
+      
     } else {
       setChatType("");
       setInput(text);
@@ -131,6 +148,7 @@ const Main = () => {
             message={message}
             loading={loading}
             showRankResult={showRankResult}
+            questionIdx={questionIdx}
           />
         )}
 
