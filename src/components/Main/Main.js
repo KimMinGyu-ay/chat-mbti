@@ -61,7 +61,7 @@ const Main = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !loading) {
       if (chatType === "mbti") clickInput(input, "mbti");
       else onSent();
     }
