@@ -10,7 +10,7 @@ import {
 // 모델도 바꾸면 된다.
 const MODEL_NAME = "gemini-1.0-pro";
 // 발급 받은 키를 바꾸면 된다.
-const API_KEY = "";
+const API_KEY = "AIzaSyCs0_A61Vm6hLVpE8J-ECklAMv1I-Vt0l8";
 
 async function runChat(prompt) {
   const genAI = new GoogleGenerativeAI(API_KEY);
