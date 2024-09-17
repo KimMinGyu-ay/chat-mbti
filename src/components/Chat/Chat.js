@@ -42,7 +42,7 @@ const Chat = (props) => {
     }
     else if (!isSelectDistance && selectType==='distance')
     {
-      setDistanceIdx(idx) 
+      setDistanceIdx(idx-4) 
       setIsSelectDistance(true);
     }
     
@@ -116,7 +116,13 @@ const Chat = (props) => {
       {questionIdx === 5 && (
         <>
           {displayedResults.map((item, idx) => (
-            <ProgressBar key={idx} width={item[1]} text={item[0]} />
+            <ProgressBar 
+              key={idx} 
+              width={item[1]} 
+              text={item[0]} 
+              purposeIdx={purposeIdx} 
+              distanceIdx={distanceIdx}
+            />
           ))}
           <br />
           <br />

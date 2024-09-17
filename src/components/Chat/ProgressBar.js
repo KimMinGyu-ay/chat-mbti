@@ -5,13 +5,14 @@ import { useState } from "react";
 import { mbtiDetail } from "../../const/mbti";
 Modal.setAppElement("#root");
 
-const ProgressBar = ({ width, text }) => {
+const ProgressBar = ({ width, text, purposeIdx, distanceIdx }) => {
   let w = Math.floor(width * 100); // 소수점 이하 버림
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const showDetailMBTI = () => {
     setModalIsOpen(true);
   };
+
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -51,10 +52,10 @@ const ProgressBar = ({ width, text }) => {
             <h2 className="content__sub-title">{mbtiDetail[text][1]}</h2>
             <div className="image-container">
               <div className="image-wrapper">
-                <img src={place[text][0]} alt={`${text} image 1`} />
+                <img src={`${place[text][distanceIdx][purposeIdx][0]}`} alt={`${text} image 1`} />
               </div>
               <div className="image-wrapper">
-                <img src={place[text][1]} alt={`${text} image 2`} />
+                <img src={`${place[text][distanceIdx][purposeIdx][1]}`} alt={`${text} image 2`} />
               </div>
             </div>
           </main>
