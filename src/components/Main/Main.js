@@ -32,22 +32,8 @@ const Main = () => {
   const [questionIdx, setQuestionIdx] = useState(0);
   const [showRankResult, setShowRankResult] = useState([]);
   const [firstCardModal, setFirstCardModal] = useState(false);
-  const [mbtiProbs, setMbtiProbs] = useState({'INTP': 0,
-                                              'ISTP': 0,
-                                              'ENTP': 0,
-                                              'ESTP': 0,
-                                              'INFP': 0,
-                                              'ISFP': 0,
-                                              'ENFP': 0,
-                                              'ESFP': 0, 
-                                              'INTJ': 0,
-                                              'ISTJ': 0,
-                                              'ENTJ': 0,
-                                              'ESTJ': 0,
-                                              'INFJ': 0,
-                                              'ISFJ': 0,
-                                              'ENFJ': 0,
-                                              'ESFJ': 0})
+  const [data, setData] = useState([]);
+  const options = [ '관광', '휴식', '쇼핑', '액티비티', '2시간 이하', '4시간 이하', '상관없음'];
   let response;
   const openModal = (chatType) => {
     setModalIsOpen(true);
@@ -69,49 +55,51 @@ const Main = () => {
     }
   };
 
-  const clickInput = async (text = "", chatType = "") => {
+  const clickInput = async (text = "", chatType = "", selectIdx = -1) => {
     if (chatType === "mbti") {
-      if (text.length > 0 && questionIdx <= 3) {
+      if (text.length > 0) {
+        if(selectIdx >= 0) 
+          { text = options[selectIdx]
+          }
+        else setData((prevRequestText) => [...prevRequestText, text]);
+        
+        
         setMessage((prevMessage) => [
           ...prevMessage,
           { type: "title", context: text },
         ]);
+        
         setInput("");
         setLoading(true);
         
         async function postData() {
           try {
-            //응답 성공 
-            response = await axios.post('http://127.0.0.1:8000/predict',{
-                //보내고자 하는 데이터 
-                text: text,
-                count: questionIdx,
-                mbti_probs: mbtiProbs
+            response = await axios.post('http://127.0.0.1:8000/predict', {
+              text: data
             });
-            setMbtiProbs(Object.fromEntries(response.data.result));
-            return response.data.result;
+            return response.data;
           } catch (error) {
-            //응답 실패
             console.error(error);
-            return null
+            return null;
           }
         }
-        response = await postData();
-        
+
+        if(questionIdx === 4){
+          response = await postData()
+        }
       }
-      setChatType(chatType);      
+
+      setChatType(chatType);
       setLoading(false);
-      
-      if(questionIdx <= 3){
-        setMessage((prevMessage) => [
-          ...prevMessage,
-          { type: "mbti", context: mbtiQuestion[questionIdx] },
-        ]);
-    }
-      setShowResult(true);
+      setMessage((prevMessage) => [
+        ...prevMessage,
+        { type: "mbti", context: mbtiQuestion[questionIdx] },
+      ]);
       setQuestionIdx(questionIdx + 1);
-      setShowRankResult(response);
-      
+      setShowResult(true);
+      if(response){
+        setShowRankResult(response.mbti);
+      }
     } else {
       setChatType("");
       setInput(text);
@@ -126,6 +114,8 @@ const Main = () => {
       setChatType("");
       setQuestionIdx(0);
       setInput('');
+      setShowRankResult([])
+      setData([])
     }
   };
 
@@ -152,6 +142,7 @@ const Main = () => {
             loading={loading}
             showRankResult={showRankResult}
             questionIdx={questionIdx}
+            clickInput={clickInput}
           />
         )}
 

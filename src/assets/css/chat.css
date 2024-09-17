@@ -180,3 +180,69 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(116, 185, 255, 0.5);
 }
+
+
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px; /* 오른쪽으로 이동시키는 부분 */
+}
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.custom-radio input[type="radio"] {
+  display: none; /* 기본 라디오 버튼 숨기기 */
+}
+
+.custom-radio .radio-label {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #333;
+  padding: 5px 10px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  transition: 0.3s ease;
+}
+
+.custom-radio input[type="radio"]:checked + .radio-label {
+  background-color: #00aaff;
+  color: white;
+  border-color: #00aaff;
+}
+
+.custom-radio .radio-label:hover {
+  border-color: #00aaff;
+}
+
+/* 각 옵션별로 다른 배경 색상 */
+.option-0 .radio-label {
+  background-color: #f3e7e9;
+  border-color: #f3e7e9;
+}
+
+.option-1 .radio-label {
+  background-color: #e0f7fa;
+  border-color: #e0f7fa;
+}
+
+.option-2 .radio-label {
+  background-color: #ffe0b2;
+  border-color: #ffe0b2;
+}
+
+.option-3 .radio-label {
+  background-color: #e1bee7;
+  border-color: #e1bee7;
+}
+
+.custom-radio input[type="radio"]:checked + .radio-label {
+  background-color: #00aaff; /* 선택된 항목의 색상 */
+  color: white;
+}
+
+
